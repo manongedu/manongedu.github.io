@@ -49,38 +49,6 @@
   </entry>
   
   <entry>
-    <title>JavaScript创建对象之Object构造函数方式</title>
-    <link href="http://www.manongedu.cn/weixinobU7VjlgFGAGEJJbou4M-mc5pG4g/9790E5E40ED34C1AAE9C7B29AED4D60D/JavaScript%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E4%B9%8BObject%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%96%B9%E5%BC%8F.html"/>
-    <id>http://www.manongedu.cn/weixinobU7VjlgFGAGEJJbou4M-mc5pG4g/9790E5E40ED34C1AAE9C7B29AED4D60D/JavaScript创建对象之Object构造函数方式.html</id>
-    <published>2018-04-22T08:34:45.000Z</published>
-    <updated>2018-04-22T08:49:57.043Z</updated>
-    
-    <content type="html"><![CDATA[<p>前言：</p><p>JavaScript是一门面向对象的语言，自然呢就会不可避免的去创建对象，我呢会讲六种方式，本文主要讲解的是使用Object构造函数的方式创建对象。</p><p>代码实现:</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span><span class="line">12</span><span class="line">13</span><span class="line">14</span><span class="line">15</span><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 创建一个对象</span></span></span><span class="line"><span class="javascript">    <span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 为创建的对象动态的添加username,age,info三个属性</span></span></span><span class="line"><span class="actionscript">    person.username = <span class="string">"zhangsan"</span>;</span></span><span class="line"><span class="undefined">    person.age = 30;</span></span><span class="line"><span class="actionscript">    person.info = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        alert(<span class="keyword">this</span>.username + <span class="string">","</span> + <span class="keyword">this</span>.age);</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="undefined">    person.info();</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure><p>总结：</p><p>1、事实上，如代码中注释所描述的那样，动态的为person这个对象添加了username、age和info属性，也可以这么说，为person对象动态添加了username，age属性和info方法。</p><p>2、这种方式是采用的是已经存在的Object去创建对象，这种方式我也称之为：<strong>基于已有对象扩充其属性和方法创建对象</strong>。</p><p>3、这种实现方式是非常简单的，就是基于已经存在的Object对象来去扩充其属性和方法，但是缺点也是很明显的，就是如果需要大量的同类对象就意味着大量的重复性的代码，效率不高。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;前言：&lt;/p&gt;
-&lt;p&gt;JavaScript是一门面向对象的语言，自然呢就会不可避免的去创建对象，我呢会讲六种方式，本文主要讲解的是使用Object构造函数的方式创建对象。&lt;/p&gt;
-&lt;p&gt;代码实现:&lt;/p&gt;
-&lt;figure class=&quot;highlight xml&quot;&gt;&lt;tab
-      
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="http://www.manongedu.cn/categories/JavaScript/"/>
-    
-    
-      <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
-    
-      <category term="创建对象" scheme="http://www.manongedu.cn/tags/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1/"/>
-    
-      <category term="Object" scheme="http://www.manongedu.cn/tags/Object/"/>
-    
-  </entry>
-  
-  <entry>
     <title>ipython的介绍及环境安装</title>
     <link href="http://www.manongedu.cn/ipython%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85.html"/>
     <id>http://www.manongedu.cn/ipython的介绍及环境安装.html</id>
@@ -106,64 +74,9 @@
   </entry>
   
   <entry>
-    <title>ipython的介绍及环境安装</title>
-    <link href="http://www.manongedu.cn/weixinobU7VjlgFGAGEJJbou4M-mc5pG4g/BDAA59F2073840E38CED55C31105FC78/ipython%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85.html"/>
-    <id>http://www.manongedu.cn/weixinobU7VjlgFGAGEJJbou4M-mc5pG4g/BDAA59F2073840E38CED55C31105FC78/ipython的介绍及环境安装.html</id>
-    <published>2018-04-21T07:57:36.000Z</published>
-    <updated>2018-04-21T08:34:22.812Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="ipython介绍"><a href="#ipython介绍" class="headerlink" title="ipython介绍"></a>ipython介绍</h1><pre><code>我们知道在python的学习中有两种环境，一种是命令环境，一种是交互式环境。命令环境其实就是我们写好的程序保存一个**.py**的源文件中，而交互式环境则是我们每写好一个命令，实时的可以与python进行交互。实际上，python本身已经为我们提供了一个python的交互式环境，我们只需要输入python命令就可以了，但是这种方式对于我们开发来说，显然在功能上还是不够的。我们需要一种更强大的交互式环境来去开发我们的程序，而**ipython**则是解决这个问题的，这个ipython实际上是也是python的交互式shell，比默认提供的shell功能更强大，支持代码自动补全，自动缩进，而且同时也支持linux的命令。使用ipython则会高效率的开发我们的程序。</code></pre><h1 id="ipython的环境安装"><a href="#ipython的环境安装" class="headerlink" title="ipython的环境安装"></a>ipython的环境安装</h1><pre><code>** 第一步、下载ipython-6.0.0.tar.gz源码包**** 第二步、解压**    tar -zxvf ipython-6.0.0.tar.gz    cd ipython-6.0.0    python setup.py install** 第三步、创建软连接**    ln -s /usr/local/python3.6/bin/ipython /usr/bin/ipython** 第四步、测试是否安装成功**    ipython    输入此语句后,即可进入与python的交互的shell,在交互的模式下,可以输入linux命令。    eg:        [root@python3 bin]# ipython        /usr/local/python3.6/lib/python3.6/site-packages/IPython/core/history.py:227: UserWarning: IPython History requires SQLite, your history will not be saved        warn(&quot;IPython History requires SQLite, your history will not be saved&quot;)        Python 3.6.4 (default, Feb 22 2018, 23:45:37)        Type &apos;copyright&apos;, &apos;credits&apos; or &apos;license&apos; for more information        IPython 6.0.0 -- An enhanced Interactive Python. Type &apos;?&apos; for help.        In [1]: 1+1        Out[1]: 2        In [2]: pwd        Out[2]: &apos;/usr/bin&apos;        In [3]: quit经过以上四个步骤就可以实现在linux上如何安装ipython了，小伙伴们，加油吧！</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;ipython介绍&quot;&gt;&lt;a href=&quot;#ipython介绍&quot; class=&quot;headerlink&quot; title=&quot;ipython介绍&quot;&gt;&lt;/a&gt;ipython介绍&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;我们知道在python的学习中有两种环境，一种是命令环境，一种是交互
-      
-    
-    </summary>
-    
-      <category term="python" scheme="http://www.manongedu.cn/categories/python/"/>
-    
-    
-      <category term="python" scheme="http://www.manongedu.cn/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
     <title>python语言在linux环境下面的安装</title>
     <link href="http://www.manongedu.cn/python%E8%AF%AD%E8%A8%80%E5%9C%A8linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%AE%89%E8%A3%85.html"/>
     <id>http://www.manongedu.cn/python语言在linux环境下面的安装.html</id>
-    <published>2018-04-20T14:34:09.000Z</published>
-    <updated>2018-04-20T16:02:52.663Z</updated>
-    
-    <content type="html"><![CDATA[<p>前言：</p><pre><code>在linux环境下安装python，网上也有很多的教程，但是总是千篇一律，今天我把我自己的安装过程给记录下来，有需要的朋友可以拿走。</code></pre><p>说明：</p><pre><code>    linux环境：Centos6.5python环境：python3.6.4</code></pre><p>开始安装：</p><p><strong>第一步：首先确定linux系统已经安装了gcc编译工具.</strong></p><pre><code>查看linux是否已经安装:rpm -q gcc，如果没有安装:yum -y install gcc gcc-c++ autoconf automake</code></pre><p><strong>第二步：确定linux系统是否已经安装了zlib,openssl,pcre</strong></p><pre><code>yum -y install zlib zlib-devel openssl openssl-devel pcre pcre-devl</code></pre><p><strong>第三步：将Python-3.6.4.tgz源代码包通过WinSCP上传至Centos6.5系统</strong></p><p><strong>第四步：安装</strong></p><pre><code>        # 解压该压缩包    tar -zxvf Python-3.6.4.tgz# 新建安装目录    mkdir /usr/local/python3.6# 进入要解压目录Python-3.6.4    cd Python-3.6.4# 安装    ./configure --prefix=/usr/local/python3.6    make    make install</code></pre><p><strong>第五步：让CentOS6.5系统默认使用python3.6.4</strong></p><pre><code>原因:在CentOS系统中默认是安装了python的,但是版本使用的是python2.6.6,这个时候就需要指定python新版本。# 查看python的安装位置    whereis python# 切换到bin命令目录    cd /usr/bin    mv python python2.6.bak   // 将当前python的版本是2.6,所以改为2.6    ln -s /usr/local/python3.6/bin/python3.6  /usr/bin/python# 在控制台输入python,则可以查看当前python的版本号(也可以输入python -V)</code></pre><p><strong>第六步：默认的python成功指向3.6以后，yum不能正常使用，需要修改yum的配置文件</strong></p><pre><code>原因: yum默认使用的是python2版本,所以当系统替换成python3版本的时候,就会导致yum不可用,如果想使用yum则必须要修改yum的配置文件# 修改yum配置文件    vim /usr/bin/yum将#!/usr/bin/python修改为#!/usr/bin/python2.6.bak(**这个文件名就是上面mv的时候重命名的python的名字**)保存退出就好。如果出现类似于以下错误:    File &quot;/usr/libexec/urlgrabber-ext-down&quot;,line 28        except OSError,e:                      ^    SyntaxError:invalid syntax则解决办法是:    修改vim /usr/libexec/urlgrabber-ext-down，将/usr/bin/python改为/usr/bin/python2.6.bak</code></pre><p><strong>第七步：配置iBus</strong></p><pre><code># 使用vim命令新建一个文件001_helloworld.py    print(&quot;hello,world&quot;)# 执行程序    python 001_helloworld.py</code></pre><p>经过上面的七个步骤，在linux环境上安装python就大功告成啦！开始我们的python之旅吧！</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;前言：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;在linux环境下安装python，网上也有很多的教程，但是总是千篇一律，今天我把我自己的安装过程给记录下来，有需要的朋友可以拿走。
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;说明：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    linux环境：Cent
-      
-    
-    </summary>
-    
-      <category term="python" scheme="http://www.manongedu.cn/categories/python/"/>
-    
-    
-      <category term="python" scheme="http://www.manongedu.cn/tags/python/"/>
-    
-      <category term="linux" scheme="http://www.manongedu.cn/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python语言在linux环境下面的安装</title>
-    <link href="http://www.manongedu.cn/weixinobU7VjlgFGAGEJJbou4M-mc5pG4g/7865FF3EB3CD4434B378C837DFAC1C4C/python%E8%AF%AD%E8%A8%80%E5%9C%A8linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%AE%89%E8%A3%85.html"/>
-    <id>http://www.manongedu.cn/weixinobU7VjlgFGAGEJJbou4M-mc5pG4g/7865FF3EB3CD4434B378C837DFAC1C4C/python语言在linux环境下面的安装.html</id>
     <published>2018-04-20T14:34:09.000Z</published>
     <updated>2018-04-20T16:02:52.663Z</updated>
     
@@ -216,31 +129,6 @@
       <category term="SpringBoot" scheme="http://www.manongedu.cn/tags/SpringBoot/"/>
     
       <category term="SpringMVC" scheme="http://www.manongedu.cn/tags/SpringMVC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在springboot中如何开发全局日期类型转换器</title>
-    <link href="http://www.manongedu.cn/weixinobU7VjlgFGAGEJJbou4M-mc5pG4g/7E5F73AF5E77452DBC36A4C9C6D6BE91/%E5%9C%A8springboot%E4%B8%AD%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E5%85%A8%E5%B1%80%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8.html"/>
-    <id>http://www.manongedu.cn/weixinobU7VjlgFGAGEJJbou4M-mc5pG4g/7E5F73AF5E77452DBC36A4C9C6D6BE91/在springboot中如何开发全局日期类型转换器.html</id>
-    <published>2018-04-20T07:05:49.000Z</published>
-    <updated>2018-04-20T07:36:08.539Z</updated>
-    
-    <content type="html"><![CDATA[<p>当我们在开发Web应用程序的时候，往往通过填写好表单后再向后台发送数据，我们知道，对于在表单上填写的内容，不管是我们填写的是数字还是日期等等，其实都是String类型的，如果我们采用的是SpringMVC这样的web层的框架的时候，那么当我们后台程序接收到数据之后，对于简单的数据类型，比如说String，Long，Integer这样都是可以正常接收的，但是这里有一个例外，就是如果前台表单提交的字段有日期(Date)的时候，是无法接收的。这个原因是在于：<strong>String转换Date失败，需要我们自己写转换器进行转换</strong>。tips:==为什么会这样？我们可以想象一下，全世界每个国家表达的日期或许多多少少都有点差异性，既然存在这么多的查询，SpringMVC干脆想了，这个事情我不做了，做不了了，交给开发者来去根据自己国家的日期表达形式去实现了==。</p><p>好了，话不多说，直接贴出来后台代码：</p><p>1、实体Bean对象</p><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用户实体</span></span><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><span class="line"></span><span class="line"><span class="comment">// 用户名称</span></span><span class="line"><span class="keyword">private</span> <span class="keyword">String</span> username;</span><span class="line"></span><span class="line"><span class="comment">// 用户生日</span></span><span class="line"><span class="keyword">private</span> Date birthday;</span><span class="line"></span><span class="line"><span class="keyword">set</span>()....<span class="keyword">get</span>()... <span class="comment">// 省略</span></span><span class="line">&#125;</span></pre></td></tr></table></figure><p>2、编写我们的日期类型转换器</p><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span><span class="line">12</span><span class="line">13</span><span class="line">14</span><span class="line">15</span><span class="line">16</span><span class="line">17</span><span class="line">18</span><span class="line">19</span><span class="line">20</span><span class="line">21</span><span class="line">22</span><span class="line">23</span><span class="line">24</span><span class="line">25</span><span class="line">26</span><span class="line">27</span><span class="line">28</span><span class="line">29</span><span class="line">30</span><span class="line">31</span><span class="line">32</span><span class="line">33</span><span class="line">34</span><span class="line">35</span><span class="line">36</span><span class="line">37</span><span class="line">38</span><span class="line">39</span><span class="line">40</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 日期类型转换器</span></span><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringToDateConverter2</span> <span class="keyword"><span class="keyword">implements</span> <span class="type">Converter</span></span>&lt;<span class="title">String</span>, <span class="title">Date</span>&gt; </span>&#123;</span><span class="line"></span><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> final <span class="keyword">String</span> DATE_FORMAT = <span class="string">"yyyy-MM-dd HH:mm:ss"</span>;</span><span class="line"></span><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> final <span class="keyword">String</span> SHORT_DATE_FORMAT = <span class="string">"yyyy-MM-dd"</span>;</span><span class="line"></span><span class="line"><span class="comment">// 实现转换</span></span><span class="line"><span class="keyword">public</span> Date convert(<span class="keyword">String</span> value) &#123;</span><span class="line"></span><span class="line"><span class="keyword">if</span> (StringUtils.isBlank(value)) &#123;</span><span class="line"><span class="keyword">return</span> <span class="literal">null</span>;</span><span class="line">&#125;</span><span class="line"></span><span class="line">value = value.trim();</span><span class="line"></span><span class="line"><span class="keyword">try</span> &#123;</span><span class="line"><span class="keyword">if</span>(value.contains(<span class="string">"-"</span>))&#123;</span><span class="line"><span class="comment">// 表示采用的日期格式是以"-"表示的。eg: 2010-09-09</span></span><span class="line">SimpleDateFormat formatter;</span><span class="line"><span class="keyword">if</span> (value.contains(<span class="string">":"</span>)) &#123;</span><span class="line"><span class="comment">// 表示传入的时间是有时分秒的</span></span><span class="line">formatter = <span class="keyword">new</span> <span class="type">SimpleDateFormat</span>(DATE_FORMAT);</span><span class="line">&#125;<span class="keyword">else</span>&#123;</span><span class="line"><span class="comment">// 表示传入的时间是没有时分秒的</span></span><span class="line">formatter = <span class="keyword">new</span> <span class="type">SimpleDateFormat</span>(SHORT_DATE_FORMAT);</span><span class="line">&#125;</span><span class="line">Date dtDate = formatter.parse(value);</span><span class="line"><span class="keyword">return</span> dtDate;</span><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span> (value.matches(<span class="string">"^\\d+$"</span>)) &#123;</span><span class="line"><span class="comment">// 表示传入的是一串数字</span></span><span class="line">Long lDate = <span class="keyword">new</span> <span class="type">Long</span>(value);</span><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> <span class="type">Date</span>(lDate);</span><span class="line">&#125;</span><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">RuntimeException</span>(<span class="keyword">String</span>.format(<span class="string">"parser %s to Date fail"</span>, value));</span><span class="line">&#125;</span><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">RuntimeException</span>(<span class="keyword">String</span>.format(<span class="string">"parser %s to Date fail"</span>, value));</span><span class="line">&#125;</span><span class="line">&#125;</span></pre></td></tr></table></figure><p>3、添加配置，注册我们自己定义好的日期类型转换器</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span><span class="line">12</span><span class="line">13</span><span class="line">14</span><span class="line">15</span><span class="line">16</span><span class="line">17</span><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConverterConfigBean</span> </span>&#123;</span><span class="line"></span><span class="line"><span class="meta">@Autowired</span></span><span class="line">    <span class="keyword">private</span> RequestMappingHandlerAdapter handlerAdapter;</span><span class="line"></span><span class="line"><span class="meta">@PostConstruct</span></span><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initEditableAvlidation</span><span class="params">()</span> </span>&#123;</span><span class="line"></span><span class="line">        ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer)handlerAdapter.getWebBindingInitializer();</span><span class="line">        <span class="keyword">if</span>(initializer.getConversionService()!=<span class="keyword">null</span>) &#123;</span><span class="line">            GenericConversionService genericConversionService = (GenericConversionService)initializer.getConversionService();           </span><span class="line">            </span><span class="line">            <span class="comment">// 注册日期类型转换器</span></span><span class="line">            genericConversionService.addConverter(<span class="keyword">new</span> StringToDateConverter());</span><span class="line">        &#125;</span><span class="line">    &#125;</span><span class="line">&#125;</span></pre></td></tr></table></figure><p>4、经过我们自定义的日期类型转换和注册我们就可以实现在全局环境下，从页面上日期类型的String字符串到后台的日期类型的Date对象的自动转换了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;当我们在开发Web应用程序的时候，往往通过填写好表单后再向后台发送数据，我们知道，对于在表单上填写的内容，不管是我们填写的是数字还是日期等等，其实都是String类型的，如果我们采用的是SpringMVC这样的web层的框架的时候，那么当我们后台程序接收到数据之后，对于简单
-      
-    
-    </summary>
-    
-      <category term="springboot springmvc" scheme="http://www.manongedu.cn/categories/springboot-springmvc/"/>
-    
-    
-      <category term="springboot 日期类型转换器 Converter" scheme="http://www.manongedu.cn/tags/springboot-%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%99%A8-Converter/"/>
     
   </entry>
   
