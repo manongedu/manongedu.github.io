@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="HelloWorld" />
+  <meta name="keywords" content="JavaScript,prototype,原型," />
 
 
 
@@ -88,16 +88,18 @@
 
 
 
-<meta name="description" content="python,java,javascript,mysql,tomcat">
-<meta property="og:type" content="website">
-<meta property="og:title" content="千里之行，始于足下">
-<meta property="og:url" content="http://www.manongedu.cn/archives/2018/04/index.html">
+<meta name="description" content="前言问题引入：使用工厂方式和构造函数方式创建对象都存在一个问题，就是如果存在很多的实例对象，那么每个实例对象内部都会有一份函数对象，也就是说每个函数均会占用一份内存空间，造成内存泄露，这样显然是没有必要的，以我之前的博文为例，参考：JavaScript创建对象之构造函数方式，因为这个info函数所完成的功能是一样的。那有的小朋友会说，不是都解决了嘛，我们可以把函数都设计成全局的函数，那么这样的话，">
+<meta name="keywords" content="JavaScript,prototype,原型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript创建对象之prototype原型方式">
+<meta property="og:url" content="http://www.manongedu.cn/JavaScript创建对象之prototype原型方式.html">
 <meta property="og:site_name" content="千里之行，始于足下">
-<meta property="og:description" content="python,java,javascript,mysql,tomcat">
+<meta property="og:description" content="前言问题引入：使用工厂方式和构造函数方式创建对象都存在一个问题，就是如果存在很多的实例对象，那么每个实例对象内部都会有一份函数对象，也就是说每个函数均会占用一份内存空间，造成内存泄露，这样显然是没有必要的，以我之前的博文为例，参考：JavaScript创建对象之构造函数方式，因为这个info函数所完成的功能是一样的。那有的小朋友会说，不是都解决了嘛，我们可以把函数都设计成全局的函数，那么这样的话，">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-23T16:13:01.386Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="千里之行，始于足下">
-<meta name="twitter:description" content="python,java,javascript,mysql,tomcat">
+<meta name="twitter:title" content="JavaScript创建对象之prototype原型方式">
+<meta name="twitter:description" content="前言问题引入：使用工厂方式和构造函数方式创建对象都存在一个问题，就是如果存在很多的实例对象，那么每个实例对象内部都会有一份函数对象，也就是说每个函数均会占用一份内存空间，造成内存泄露，这样显然是没有必要的，以我之前的博文为例，参考：JavaScript创建对象之构造函数方式，因为这个info函数所完成的功能是一样的。那有的小朋友会说，不是都解决了嘛，我们可以把函数都设计成全局的函数，那么这样的话，">
 
 
 
@@ -127,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://www.manongedu.cn/archives/2018/04/"/>
+  <link rel="canonical" href="http://www.manongedu.cn/JavaScript创建对象之prototype原型方式.html"/>
 
 
 
 
 
-  <title>归档 | 千里之行，始于足下</title>
+  <title>JavaScript创建对象之prototype原型方式 | 千里之行，始于足下</title>
   
   
 
@@ -163,7 +165,7 @@
   
     
   
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -296,296 +298,364 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.manongedu.cn/JavaScript创建对象之prototype原型方式.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HelloWorld小码农">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tomcat.jpg">
+    </span>
+
+    <script type="application/ld+json">
+    {
+        "@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+        "@id":"http://www.manongedu.cn/JavaScript创建对象之prototype原型方式.html",
+        "appid":"1596380894766501",
+        "title":"JavaScript创建对象之prototype原型方式",
+        "images":[
+            "http://www.manongedu.cn/JavaScript创建对象之prototype原型方式.html01.jpg"
+        ],
+        "pubDate":"2018-04-23T23:40:45"
+    }
+    </script>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千里之行，始于足下">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h2 class="post-title" itemprop="name headline">JavaScript创建对象之prototype原型方式</h2>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T23:40:45+08:00">
+                2018-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 7 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/prototype/" itemprop="url" rel="index">
+                    <span itemprop="name">prototype</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/JavaScript创建对象之prototype原型方式.html" class="leancloud_visitors" data-flag-title="JavaScript创建对象之prototype原型方式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+		 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  595
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>问题引入：使用工厂方式和构造函数方式创建对象都存在一个问题，就是如果存在很多的实例对象，那么每个实例对象内部都会有一份函数对象，也就是说每个函数均会占用一份内存空间，造成内存泄露，这样显然是没有必要的，以我之前的博文为例，参考：<a href="https://www.manongedu.cn/JavaScript%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%96%B9%E5%BC%8F.html">JavaScript创建对象之构造函数方式</a>，因为这个info函数所完成的功能是一样的。那有的小朋友会说，不是都解决了嘛，我们可以<strong>把函数都设计成全局的函数</strong>，那么这样的话，不就实现了多个实例对象共享同一个方法了吗？这样做其实也是可以的，但是带来的问题主要有两点：</p>
+<p>1、破坏了函数对象的封装性，属性和方法分离了。</p>
+<p>2、如果一个对象里面有大量的方法，难道这些方法都要设计成全局函数不成。</p>
+<h1 id="问题解决："><a href="#问题解决：" class="headerlink" title="问题解决："></a>问题解决：</h1><p><strong>使用原型方式</strong></p>
+<h1 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span>
+<span class="line">2</span>
+<span class="line">3</span>
+<span class="line">4</span>
+<span class="line">5</span>
+<span class="line">6</span>
+<span class="line">7</span>
+<span class="line">8</span>
+<span class="line">9</span>
+<span class="line">10</span>
+<span class="line">11</span>
+<span class="line">12</span>
+<span class="line">13</span>
+<span class="line">14</span>
+<span class="line">15</span>
+<span class="line">16</span>
+<span class="line">17</span>
+<span class="line">18</span>
+<span class="line">19</span>
+<span class="line">20</span>
+<span class="line">21</span>
+<span class="line">22</span>
+<span class="line">23</span>
+<span class="line">24</span>
+<span class="line">25</span>
+<span class="line">26</span>
+<span class="line">27</span>
+<span class="line">28</span>
+</pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span>
+<span class="line"><span class="undefined">    </span></span>
+<span class="line"><span class="actionscript">    <span class="comment">// 创建一个构造函数</span></span></span>
+<span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span></span>
+<span class="line"><span class="undefined">        </span></span>
+<span class="line"><span class="undefined">    &#125;</span></span>
+<span class="line"><span class="undefined">    </span></span>
+<span class="line"><span class="actionscript">    <span class="comment">// 向Person原型对象添加name属性和info方法</span></span></span>
+<span class="line"><span class="actionscript">    Person.prototype.name = <span class="string">"zhangsan"</span>;</span></span>
+<span class="line"><span class="actionscript">    Person.prototype.info = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span>
+<span class="line"><span class="undefined">        </span></span>
+<span class="line"><span class="actionscript">        alert(<span class="keyword">this</span>.name);</span></span>
+<span class="line"><span class="undefined">    &#125;</span></span>
+<span class="line"><span class="undefined">    </span></span>
+<span class="line"><span class="actionscript">    <span class="comment">// 创建对象</span></span></span>
+<span class="line"><span class="actionscript">    <span class="keyword">var</span> p1 = <span class="keyword">new</span> Person();</span></span>
+<span class="line"><span class="actionscript">    p1.info();   <span class="comment">// zhangsan</span></span></span>
+<span class="line"><span class="undefined">    </span></span>
+<span class="line"><span class="actionscript">    <span class="keyword">var</span> p2 = <span class="keyword">new</span> Person();</span></span>
+<span class="line"><span class="actionscript">    p2.info();  <span class="comment">//  zhangsan</span></span></span>
+<span class="line"><span class="undefined">    </span></span>
+<span class="line"><span class="actionscript">    p2.name = <span class="string">"lisi"</span>;</span></span>
+<span class="line"><span class="actionscript">    <span class="keyword">var</span> p3 = <span class="keyword">new</span> Person();</span></span>
+<span class="line"><span class="actionscript">    p2.info(); <span class="comment">// lisi</span></span></span>
+<span class="line"><span class="undefined">    </span></span>
+<span class="line"><span class="actionscript">    p3.info(); <span class="comment">// zhangsan</span></span></span>
+<span class="line"><span class="undefined">    </span></span>
+<span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span>
+</pre></td></tr></table></figure>
+<p><strong>代码解释:</strong></p>
+<p>实例对象在访问方法或属性时，优先是搜索自己的属性和方法，如果自己的属性和方法没有找到，则再去搜索原型的属性和方法，如果原型中也没有找到，就去原型对象的原型中搜索，一直沿着原型这条链搜索，直到找到为止，如果没有找到，则就会出现undefined，上面的代码中<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span>
+</pre></td><td class="code"><pre><span class="line">p2<span class="selector-class">.name</span> = <span class="string">"lisi"</span></span>
+</pre></td></tr></table></figure></p>
+<p>实际上是给p2对象添加了一个自己的属性为name，所以才会输出“lisi”。如果这一块有不懂的地方，朋友可以参考我的视频.</p>
+<p><a href="http://baijiahao.baidu.com/builder/preview/s?id=1596423769929725910" target="_blank" rel="noopener">JavaScript之prototype深入讲解</a></p>
+<p><a href="http://baijiahao.baidu.com/builder/preview/s?id=1596470301079974341" target="_blank" rel="noopener">JavaScript之prototype原型继承深入讲解</a></p>
+<p><a href="http://baijiahao.baidu.com/builder/preview/s?id=1596553422199972973" target="_blank" rel="noopener">JavaScript之prototype原型链深入讲解</a></p>
+<hr>
+<p>注意：此种方式仍然是有缺陷的，我会在下一篇博文中进行阐述。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>喜欢交流,喜欢分享,喜欢我那就点我吧！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin.png" alt="HelloWorld小码农 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.png" alt="HelloWorld小码农 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+	<div>
+	  
+	    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+            <a href="/tags/prototype/" rel="tag"><i class="fa fa-tag"></i> prototype</a>
+          
+            <a href="/tags/原型/" rel="tag"><i class="fa fa-tag"></i> 原型</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
         
-        
+
         
 
         
           
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
           </div>
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/JavaScript创建对象之prototype原型方式.html" itemprop="url">
-              
-                <span itemprop="name">JavaScript创建对象之prototype原型方式</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-23T23:40:45+08:00"
-              content="2018-04-23" >
-          04-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        </div>
+      
       
 
-        
-        
-        
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/JavaScript创建对象之构造函数方式.html" rel="next" title="JavaScript创建对象之构造函数方式">
+                <i class="fa fa-chevron-left"></i> JavaScript创建对象之构造函数方式
+              </a>
+            
+          </div>
 
-        
-        
+          <span class="post-nav-divider"></span>
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/JavaScript创建对象之构造函数方式.html" itemprop="url">
-              
-                <span itemprop="name">JavaScript创建对象之构造函数方式</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-23T23:16:08+08:00"
-              content="2018-04-23" >
-          04-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/JavaScript创建对象之工厂方式.html" itemprop="url">
-              
-                <span itemprop="name">JavaScript创建对象之工厂方式</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-22T17:15:26+08:00"
-              content="2018-04-22" >
-          04-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/JavaScript创建对象之Object构造函数方式.html" itemprop="url">
-              
-                <span itemprop="name">JavaScript创建对象之Object构造函数方式</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-22T16:34:45+08:00"
-              content="2018-04-22" >
-          04-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/ipython的介绍及环境安装.html" itemprop="url">
-              
-                <span itemprop="name">ipython的介绍及环境安装</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-21T15:57:36+08:00"
-              content="2018-04-21" >
-          04-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/python语言在linux环境下面的安装.html" itemprop="url">
-              
-                <span itemprop="name">python语言在linux环境下面的安装</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-20T22:34:09+08:00"
-              content="2018-04-20" >
-          04-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/在springboot中如何开发全局日期类型转换器.html" itemprop="url">
-              
-                <span itemprop="name">在springboot中如何开发全局日期类型转换器</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-20T15:05:49+08:00"
-              content="2018-04-20" >
-          04-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-    </div>
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
 		<script>cambrian.render('tail')</script>
@@ -594,6 +664,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -614,8 +688,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -702,6 +785,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题解决："><span class="nav-number">2.</span> <span class="nav-text">问题解决：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码如下："><span class="nav-number">3.</span> <span class="nav-text">代码如下：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -865,6 +964,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
