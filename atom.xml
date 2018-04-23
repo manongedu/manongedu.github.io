@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.manongedu.cn/"/>
-  <updated>2018-04-23T16:02:00.008Z</updated>
+  <updated>2018-04-23T15:34:23.379Z</updated>
   <id>http://www.manongedu.cn/</id>
   
   <author>
@@ -15,37 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>&#39;JavaScript创建对象之prototype原型方式&#39;</title>
-    <link href="http://www.manongedu.cn/JavaScript%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E4%B9%8Bprototype%E5%8E%9F%E5%9E%8B%E6%96%B9%E5%BC%8F.html"/>
-    <id>http://www.manongedu.cn/JavaScript创建对象之prototype原型方式.html</id>
-    <published>2018-04-23T15:40:45.000Z</published>
-    <updated>2018-04-23T16:02:00.008Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>问题引入：使用工厂方式和构造函数方式创建对象都存在一个问题，就是如果存在很多的实例对象，那么每个实例对象内部都会有一份函数对象，也就是说每个函数均会占用一份内存空间，造成内存泄露，这样显然是没有必要的，以我之前的博文为例，参考：<a href="https://www.manongedu.cn/JavaScript%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%96%B9%E5%BC%8F.html">JavaScript创建对象之构造函数方式</a>，因为这个info函数所完成的功能是一样的。那有的小朋友会说，不是都解决了嘛，我们可以<strong>把函数都设计成全局的函数</strong>，那么这样的话，不就实现了多个实例对象共享同一个方法了吗？这样做其实也是可以的，但是带来的问题主要有两点：</p><p>1、破坏了函数对象的封装性，属性和方法分离了。</p><p>2、如果一个对象里面有大量的方法，难道这些方法都要设计成全局函数不成。</p><h1 id="问题解决："><a href="#问题解决：" class="headerlink" title="问题解决："></a>问题解决：</h1><p><strong>使用原型方式</strong></p><h1 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span><span class="line">12</span><span class="line">13</span><span class="line">14</span><span class="line">15</span><span class="line">16</span><span class="line">17</span><span class="line">18</span><span class="line">19</span><span class="line">20</span><span class="line">21</span><span class="line">22</span><span class="line">23</span><span class="line">24</span><span class="line">25</span><span class="line">26</span><span class="line">27</span><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 创建一个构造函数</span></span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 向Person原型对象添加name属性和info方法</span></span></span><span class="line"><span class="actionscript">    Person.prototype.name = <span class="string">"zhangsan"</span>;</span></span><span class="line"><span class="actionscript">    Person.prototype.info = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        alert(<span class="keyword">this</span>.name);</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 创建对象</span></span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> p1 = <span class="keyword">new</span> Person();</span></span><span class="line"><span class="actionscript">    p1.info();   <span class="comment">// zhangsan</span></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> p2 = <span class="keyword">new</span> Person();</span></span><span class="line"><span class="actionscript">    p2.info();  <span class="comment">//  zhangsan</span></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    p2.name = <span class="string">"lisi"</span>;</span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> p3 = <span class="keyword">new</span> Person();</span></span><span class="line"><span class="actionscript">    p2.info(); <span class="comment">// lisi</span></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    p3.info(); <span class="comment">// zhangsan</span></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure><p><strong>代码解释:</strong></p><p>实例对象在访问方法或属性时，优先是搜索自己的属性和方法，如果自己的属性和方法没有找到，则再去搜索原型的属性和方法，如果原型中也没有找到，就去原型对象的原型中搜索，一直沿着原型这条链搜索，直到找到为止，如果没有找到，则就会出现undefined，上面的代码中<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">p2<span class="selector-class">.name</span> = <span class="string">"lisi"</span></span></pre></td></tr></table></figure></p><p>实际上是给p2对象添加了一个自己的属性为name，所以才会输出“lisi”。如果这一块有不懂的地方，朋友可以参考我的视频.</p><p><a href="http://baijiahao.baidu.com/builder/preview/s?id=1596423769929725910" target="_blank" rel="noopener">JavaScript之prototype深入讲解</a></p><p><a href="http://baijiahao.baidu.com/builder/preview/s?id=1596470301079974341" target="_blank" rel="noopener">JavaScript之prototype原型继承深入讲解</a></p><p><a href="http://baijiahao.baidu.com/builder/preview/s?id=1596553422199972973" target="_blank" rel="noopener">JavaScript之prototype原型链深入讲解</a></p><hr><p>注意：此种方式仍然是有缺陷的，我会在下一篇博文中进行阐述。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;问题引入：使用工厂方式和构造函数方式创建对象都存在一个问题，就是如果存在很多的实例对象，那么每个实例对象内部都会有一份函数对象，也就是说每个
-      
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="http://www.manongedu.cn/categories/JavaScript/"/>
-    
-      <category term="prototype" scheme="http://www.manongedu.cn/categories/JavaScript/prototype/"/>
-    
-    
-      <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
-    
-      <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
-    
-      <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
-    
-  </entry>
   
   <entry>
     <title>JavaScript创建对象之构造函数方式</title>
