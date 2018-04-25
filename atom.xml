@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.manongedu.cn/"/>
-  <updated>2018-04-24T14:59:24.371Z</updated>
+  <updated>2018-04-25T13:26:27.724Z</updated>
   <id>http://www.manongedu.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript创建对象之原型和构造函数组合方式</title>
+    <link href="http://www.manongedu.cn/JavaScript%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%8E%9F%E5%9E%8B%E5%92%8C%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%84%E5%90%88%E6%96%B9%E5%BC%8F.html"/>
+    <id>http://www.manongedu.cn/JavaScript创建对象之原型和构造函数组合方式.html</id>
+    <published>2018-04-25T13:07:33.000Z</published>
+    <updated>2018-04-25T13:26:27.724Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>在上一篇<a href="https://www.manongedu.cn/JavaScript%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E4%B9%8Bprototype%E5%8E%9F%E5%9E%8B%E6%96%B9%E5%BC%8F.html">JavaScript创建对象之原型方式</a>及<a href="https://www.manongedu.cn/JavaScript%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%8E%9F%E5%9E%8B%E6%96%B9%E5%BC%8F%E7%9A%84%E9%97%AE%E9%A2%98%E7%82%B9.html">JavaScript创建对象之原型方式问题点</a>中，我主要总结了两点：</p><p>1、<strong>单纯的使用原型方式虽然也可以创建对象，但是问题是属性都是对象所共享的，没有私有属性了，而且一个对象对该属性的改变有也会导致其他对象对属性的改变。</strong></p><p>2、<strong>单纯的使用原型方式去构造一个类，虽然解决了多个实例对象共享方法的问题，但是无法像类似于构造函数的方式为属性赋初值，只能在对象生成之后再去改变属性的值。</strong></p><p>本文的主要目的就是用来解决这两个问题。</p><h1 id="解决问题的思路："><a href="#解决问题的思路：" class="headerlink" title="解决问题的思路："></a>解决问题的思路：</h1><p>我们可以把对象的私有属性用构造函数实现，方法使用原型来实现，这样就实现了对象之间的属性互不干扰，同时各个对象共享同一个方法。</p><h1 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span><span class="line">12</span><span class="line">13</span><span class="line">14</span><span class="line">15</span><span class="line">16</span><span class="line">17</span><span class="line">18</span><span class="line">19</span><span class="line">20</span><span class="line">21</span><span class="line">22</span><span class="line">23</span><span class="line">24</span><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 定义Person构造函数</span></span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(arrs,age)</span></span>&#123;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.arrs = arrs;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.age = age;</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 向Person原型对象添加info方法</span></span></span><span class="line"><span class="actionscript">    Person.prototype.info = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="actionscript">        alert(<span class="keyword">this</span>.arrs + <span class="string">","</span> + <span class="keyword">this</span>.age);        </span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> p1 = <span class="keyword">new</span> Person([<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>],<span class="number">30</span>);</span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> p2 = <span class="keyword">new</span> Person([<span class="string">'HelloWorld小码农'</span>],<span class="number">20</span>);</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    p1.info();      <span class="comment">// zhangsan , lisi , 30</span></span></span><span class="line"><span class="actionscript">    p2.info();      <span class="comment">// HelloWorld小码农 , 20</span></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    p1.arrs.push(<span class="string">"Java"</span>);</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    p1.info();      <span class="comment">// zhangsan , lisi , Java  , 30</span></span></span><span class="line"><span class="actionscript">    p2.info();      <span class="comment">// HelloWorld小码农 , 20</span></span></span><span class="line"><span class="undefined"></span></span><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure><h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>通过上面的代码实现，可以看到，通过构造函数的方式，使得创建的p1和p2两个对象的属性是各自私有的，不会因为其中一个对象的属性的改变而影响其他对象，同时又通过原型的方式<br>使得创建的对象p1和p2共享info方法。至此，使用构造函数+原型的方式去创建对象结合了构造函数方式和原型方式的优点，又摒弃了这两种方式的缺点，实现了对象之间属性的互不干扰，<br>各个对象共享同一个方法。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言：&quot;&gt;&lt;a href=&quot;#前言：&quot; class=&quot;headerlink&quot; title=&quot;前言：&quot;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;在上一篇&lt;a href=&quot;https://www.manongedu.cn/JavaScript%E5%88%9B%E5%BB%BA
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://www.manongedu.cn/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
+    
+      <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
+    
+      <category term="构造函数" scheme="http://www.manongedu.cn/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript创建对象之原型方式的问题点</title>
@@ -39,9 +68,9 @@
     
       <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
     
-      <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
-    
       <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
+    
+      <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
     
   </entry>
   
@@ -70,9 +99,9 @@
     
       <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
     
-      <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
-    
       <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
+    
+      <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
     
   </entry>
   
