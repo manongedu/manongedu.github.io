@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.manongedu.cn/"/>
-  <updated>2018-04-27T13:59:43.924Z</updated>
+  <updated>2018-04-28T14:58:56.582Z</updated>
   <id>http://www.manongedu.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript高级之call和apply的使用</title>
+    <link href="http://www.manongedu.cn/JavaScript%E9%AB%98%E7%BA%A7%E4%B9%8Bcall%E5%92%8Capply%E7%9A%84%E4%BD%BF%E7%94%A8.html"/>
+    <id>http://www.manongedu.cn/JavaScript高级之call和apply的使用.html</id>
+    <published>2018-04-28T09:08:31.000Z</published>
+    <updated>2018-04-28T14:58:56.582Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>本文主要讲解在JavaScript中this的第四种用法，其实也就是讲解call和apply的使用,事实上，call和apply的使用于this有着密切的关系。在讲解之前，我们首先来去看一段代码，思考一下在JavaScript中，函数的调用形式有几种，代码如下：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.name = <span class="string">"HelloWorld小码农"</span>;</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure><ol><li><p>直接调用</p><p> Person(); 此种调用方式中，函数内部的this指向window。</p></li><li><p>构造函数的形式调用</p><p> var person = new Person(); 函数内部的this指向的是person对象。</p></li></ol><h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>实际上，函数内部的this都是代表当前对象，只不过是JavaScript中函数内部的this会随着程序而指向不同的对象。</p><h1 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h1><p><strong>我们能不能手动修改this的指向呢？</strong></p><p>答案：是可以的，使用call或apply</p><h2 id="主题引入："><a href="#主题引入：" class="headerlink" title="主题引入："></a>主题引入：</h2><p><strong>call或apply的作用：改变函数内部this的指向。</strong></p><h1 id="由代码引发的思考："><a href="#由代码引发的思考：" class="headerlink" title="由代码引发的思考："></a>由代码引发的思考：</h1><p>首先去看第一个程序，代码如下：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span><span class="line">12</span><span class="line">13</span><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span></span>&#123;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.name = name;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.age = age;</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">info</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="actionscript">        alert(<span class="keyword">this</span>.name + <span class="string">" , "</span> + <span class="keyword">this</span>.age);</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'lisi'</span> , <span class="number">60</span>);</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure><h2 id="问题：-1"><a href="#问题：-1" class="headerlink" title="问题："></a>问题：</h2><p>我现在想借用这个info方法来去实现对p1对象的打印，该怎么做？</p><ol><li>方案一：直接调用info函数，即info(); 通过上一篇博文对this的讲解，肯定不行，因为这样调用的话，info函数内部的this其实指的是window。</li><li>方案二：通过对象调用，即p1.info(); 其实也不行，因为p1对象压根就没有info()方法，p1对象只有name和age属性。</li></ol><h2 id="尝试解决："><a href="#尝试解决：" class="headerlink" title="尝试解决："></a>尝试解决：</h2><p>继续看第二个程序，代码如下：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span><span class="line">12</span><span class="line">13</span><span class="line">14</span><span class="line">15</span><span class="line">16</span><span class="line">17</span><span class="line">18</span><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><span class="line"><span class="undefined"></span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.name = name;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.age = age;</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">info</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="actionscript">        alert(<span class="keyword">this</span>.name + <span class="string">" , "</span> + <span class="keyword">this</span>.age);</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'lisi'</span> , <span class="number">50</span>);</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="undefined">    p1.show = info;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    p1.show();   <span class="comment">// lisi , 50</span></span></span><span class="line"><span class="undefined"></span></span><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure><p>通过代码可以发现，我们通过向p1对象添加了一个show属性，而这个show属性的值其实是一个函数的地址，是一个函数对象，然后通过p1.show()就可以实现打印了。此种方法确实可以实现该功能，但是这种是<strong>通过对p1对象添加属性完成的，如果仍有类似的需求，是不是都要向p1对象添加属性来完成需求呢，这样既会导致p1对象的占用空间越来越大，所以此种方式并不优雅。</strong></p><h2 id="问题思考："><a href="#问题思考：" class="headerlink" title="问题思考："></a>问题思考：</h2><p>针对上面的问题，本质上就是想通过修改info()函数内部的this指针的问题来完成对当前对象的一个打印，那么我们可不可以在不增加属性的方式上来完成功能呢？那么这个时候就使用到了今天要讲的call或apply.</p><h1 id="call或apply的使用："><a href="#call或apply的使用：" class="headerlink" title="call或apply的使用："></a>call或apply的使用：</h1><ol><li><p>功能：</p><p> <strong>使用指定的对象调用当前函数。</strong></p></li><li><p>语法：</p><p> call([thisObj[,arg1[, arg2[, [,.argN]]]]])</p><p> apply(thisObj[,argArray])</p></li><li><p>说明：</p><p> <1> <strong>两个方法的功能完全一样，唯一区别就是参数</strong>。对于第一个参数来说thisObj，作用是一样的，用作代表当前对象的对象，说白了就表示的是函数执行时，this指向谁。<br>对于第二个参数，apply要求传入的是一个参数数组，也就是说将一系列参数组成一个数组传入，而对于call来说，散列的的参数值的方式传入。</1></p><p> <2> 这两个方法都是Function对象中的方法，因为我们定义的每个对象都拥有该方法。</2></p><p> <3> call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象，如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。</3></p></li></ol><h2 id="问题解决："><a href="#问题解决：" class="headerlink" title="问题解决："></a>问题解决：</h2><p>代码如下：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span><span class="line">12</span><span class="line">13</span><span class="line">14</span><span class="line">15</span><span class="line">16</span><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.name = name;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.age = age;</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">info</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="actionscript">        alert(<span class="keyword">this</span>.name + <span class="string">" , "</span> + <span class="keyword">this</span>.age);</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'lisi'</span> , <span class="number">50</span>);</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="undefined">    info.call(p1);</span></span><span class="line"><span class="undefined"></span></span><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure><p>上面的代码就解决了问题，分析：就是说，当在函数中调用call方法时，函数内部的this会自动指向call方法中的第一个参数。上面的例子中，当执行info.call(p1)时，info函数内部的this则会自动指向p1对象，所以当然就可以call这种方式来完成对p1对象的打印。</p><p>好啦，看懂了吗？下一篇我们通过一个复杂的例子对call或apply继续做个案例分析。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言：&quot;&gt;&lt;a href=&quot;#前言：&quot; class=&quot;headerlink&quot; title=&quot;前言：&quot;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;本文主要讲解在JavaScript中this的第四种用法，其实也就是讲解call和apply的使用,事实上，call和apply的使
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://www.manongedu.cn/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
+    
+      <category term="call" scheme="http://www.manongedu.cn/tags/call/"/>
+    
+      <category term="apply" scheme="http://www.manongedu.cn/tags/apply/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript高级之this详解</title>
@@ -122,9 +151,9 @@
     
       <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
     
-      <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
-    
       <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
+    
+      <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
     
   </entry>
   
@@ -153,9 +182,9 @@
     
       <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
     
-      <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
-    
       <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
+    
+      <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
     
   </entry>
   
