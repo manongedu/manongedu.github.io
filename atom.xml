@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.manongedu.cn/"/>
-  <updated>2018-04-28T14:58:56.582Z</updated>
+  <updated>2018-04-29T07:29:14.921Z</updated>
   <id>http://www.manongedu.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript继承之对象冒充</title>
+    <link href="http://www.manongedu.cn/JavaScript%E7%BB%A7%E6%89%BF%E4%B9%8B%E5%AF%B9%E8%B1%A1%E5%86%92%E5%85%85.html"/>
+    <id>http://www.manongedu.cn/JavaScript继承之对象冒充.html</id>
+    <published>2018-04-29T07:00:42.000Z</published>
+    <updated>2018-04-29T07:29:14.921Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>JavaScript是一门面向对象的编程语言，自然少不了面向对象中的继承的特性，本文主要就是讲解继承的第一种实现方式：<strong>对象冒充</strong>。</p><h1 id="学习前提："><a href="#学习前提：" class="headerlink" title="学习前提："></a>学习前提：</h1><p>使用对象冒充的方式实现继承，就必须要深入掌握this的用法。</p><h1 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span><span class="line">12</span><span class="line">13</span><span class="line">14</span><span class="line">15</span><span class="line">16</span><span class="line">17</span><span class="line">18</span><span class="line">19</span><span class="line">20</span><span class="line">21</span><span class="line">22</span><span class="line">23</span><span class="line">24</span><span class="line">25</span><span class="line">26</span><span class="line">27</span><span class="line">28</span><span class="line">29</span><span class="line">30</span><span class="line">31</span><span class="line">32</span><span class="line">33</span><span class="line">34</span><span class="line">35</span><span class="line">36</span><span class="line">37</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><span class="line"><span class="undefined"></span></span><span class="line"><span class="actionscript">    <span class="comment">// 定义父类</span></span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Parent</span><span class="params">(name)</span></span>&#123;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.name = name;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="actionscript">            alert(<span class="keyword">this</span>.username);</span></span><span class="line"><span class="undefined">        &#125;</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 定义子类</span></span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Child</span><span class="params">(name,password)</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.method = Parent;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.method(name);</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.password = password;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.info = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="actionscript">            alert(<span class="keyword">this</span>.name + <span class="string">" ,"</span> + <span class="keyword">this</span>.password);            </span></span><span class="line"><span class="undefined">        &#125;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="keyword">delete</span> method;</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined"></span></span><span class="line"><span class="actionscript">    <span class="comment">// 创建父类</span></span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> parent = <span class="keyword">new</span> Parent(<span class="string">"zhangsan"</span>);</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 创建子类</span></span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> child = <span class="keyword">new</span> Child(<span class="string">"lisi"</span> , <span class="string">"123456"</span>);</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    parent.sayName();       <span class="comment">// zhangsan</span></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    child.sayName();        <span class="comment">// lisi </span></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    child.info();           <span class="comment">// lisi , 123456</span></span></span><span class="line"><span class="undefined"></span></span><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure><h2 id="代码分析："><a href="#代码分析：" class="headerlink" title="代码分析："></a>代码分析：</h2><p>通过程序运行发现，child.sayName()居然打印出来了结果，可是child实例对象并没有sayName方法呀，而这个sayName方法是定义在了父类Parent上，这样就相当于子类Child把父类Parent中的方法给继承了下来。为什么会这样？</p><h2 id="原因解释："><a href="#原因解释：" class="headerlink" title="原因解释："></a>原因解释：</h2><p>原因在于子类Child的定义上，可以看到，在Child函数内部，为Child定义了一个method属性，而这个method属性又指向了Parent函数(也就是说method属性实际上是一个方法)，然后又去调用了这个method方法(实际是调用了Parent函数)，好了，原因就出在了这里，当我通过this.method(name)执行的时候，这个this本身指的是Child的实例对象，但是实际上是调用的Parent函数，那么对于Parent函数来说，Parent函数内部的this又该是谁呢？<strong>难道是Parent的实例对象吗？答案显然不是的，因为我们说函数内部的this具体是指向谁，是由这个函数到底是由哪个对象来去调用，那么现在显然是通过Child的实例对象来去调用的，所以实际上Parent函数中的this实际上是this.method(name)这句代码中的this，而这个代码中的this确确实实是Child的实例对象。通过调用this.method(name)就相当于为Child实例对象也添加了一个sayName方法，那么理所应当的Child实例对象当然可以调用sayName方法了</strong>。在这里还要强调一句，delete this.method这句代码也是必不可少的，因为当我们使用sayName完毕之后，这个method属性其实就没有存在的必要了。</p><p>更多详细解释，请参考我的视频：<a href="http://baijiahao.baidu.com/builder/preview/s?id=1597008085820347254" target="_blank" rel="noopener">JavaScript继承之对象冒充方式</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言：&quot;&gt;&lt;a href=&quot;#前言：&quot; class=&quot;headerlink&quot; title=&quot;前言：&quot;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;JavaScript是一门面向对象的编程语言，自然少不了面向对象中的继承的特性，本文主要就是讲解继承的第一种实现方式：&lt;strong
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://www.manongedu.cn/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
+    
+      <category term="继承" scheme="http://www.manongedu.cn/tags/%E7%BB%A7%E6%89%BF/"/>
+    
+      <category term="对象冒充" scheme="http://www.manongedu.cn/tags/%E5%AF%B9%E8%B1%A1%E5%86%92%E5%85%85/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript高级之call和apply的使用</title>
