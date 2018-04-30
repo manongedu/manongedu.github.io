@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.manongedu.cn/"/>
-  <updated>2018-04-29T07:29:14.921Z</updated>
+  <updated>2018-04-30T02:20:45.520Z</updated>
   <id>http://www.manongedu.cn/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript继承之call或apply方式</title>
+    <link href="http://www.manongedu.cn/JavaScript%E7%BB%A7%E6%89%BF%E4%B9%8Bcall%E6%88%96apply%E6%96%B9%E5%BC%8F.html"/>
+    <id>http://www.manongedu.cn/JavaScript继承之call或apply方式.html</id>
+    <published>2018-04-30T02:07:17.000Z</published>
+    <updated>2018-04-30T02:20:45.520Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>在之前的博文<a href="https://www.manongedu.cn/JavaScript%E9%AB%98%E7%BA%A7%E4%B9%8Bcall%E5%92%8Capply%E7%9A%84%E4%BD%BF%E7%94%A8.html">JavaScript高级之call和apply的使用</a>中有讲到，call和apply的本质是：<strong>该变一个函数内部this的指向</strong>。好啦，知道了这一点，我们就使用call和apply的方式去实现JavaScript中的继承问题。</p><h1 id="直接上代码："><a href="#直接上代码：" class="headerlink" title="直接上代码："></a>直接上代码：</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span><span class="line">12</span><span class="line">13</span><span class="line">14</span><span class="line">15</span><span class="line">16</span><span class="line">17</span><span class="line">18</span><span class="line">19</span><span class="line">20</span><span class="line">21</span><span class="line">22</span><span class="line">23</span><span class="line">24</span><span class="line">25</span><span class="line">26</span><span class="line">27</span><span class="line">28</span><span class="line">29</span><span class="line">30</span><span class="line">31</span><span class="line">32</span><span class="line">33</span><span class="line">34</span><span class="line">35</span><span class="line">36</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 定义父类</span></span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Parent</span><span class="params">(name)</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.name = name;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="undefined">            </span></span><span class="line"><span class="actionscript">            alert(<span class="keyword">this</span>.name);   </span></span><span class="line"><span class="undefined">        &#125;</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 定义子类</span></span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Child</span><span class="params">(name,password)</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.passsword = passsword;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.info = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="actionscript">            alert(<span class="keyword">this</span>.password);</span></span><span class="line"><span class="undefined">        &#125;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="comment">// 此句代码就实现了继承</span></span></span><span class="line"><span class="actionscript">        Parent.call(<span class="keyword">this</span>,name);</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 创建对象</span></span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> parent = <span class="keyword">new</span> Parent(<span class="string">"zhangsan"</span>);</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> child = <span class="keyword">new</span> Child(<span class="string">"lisi"</span> , <span class="string">"123"</span>);</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    parent.sayName(); <span class="comment">// zhangsan</span></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    child.info();    <span class="comment">//  123</span></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    child.sayName(); <span class="comment">// lisi</span></span></span><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure><h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p><strong>使用call或apply这种方式，本质上其实和第一种实现方式是一样的，都是利用了this。</strong></p><h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p>具体对于call和apply的使用，请参考我的博文和视频：</p><p>博文：<a href="https://www.manongedu.cn/JavaScript%E9%AB%98%E7%BA%A7%E4%B9%8Bcall%E5%92%8Capply%E7%9A%84%E4%BD%BF%E7%94%A8.html">JavaScript高级之call和apply的使用</a></p><p>视频：<a href="http://baijiahao.baidu.com/builder/preview/s?id=1597278267456082277" target="_blank" rel="noopener">JavaScript继承之apply方式</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言：&quot;&gt;&lt;a href=&quot;#前言：&quot; class=&quot;headerlink&quot; title=&quot;前言：&quot;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;在之前的博文&lt;a href=&quot;https://www.manongedu.cn/JavaScript%E9%AB%98%E7%BA%
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://www.manongedu.cn/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
+    
+      <category term="继承" scheme="http://www.manongedu.cn/tags/%E7%BB%A7%E6%89%BF/"/>
+    
+      <category term="call" scheme="http://www.manongedu.cn/tags/call/"/>
+    
+      <category term="apply" scheme="http://www.manongedu.cn/tags/apply/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript继承之对象冒充</title>
@@ -180,9 +211,9 @@
     
       <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
     
-      <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
-    
       <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
+    
+      <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
     
   </entry>
   
@@ -211,9 +242,9 @@
     
       <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
     
-      <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
-    
       <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
+    
+      <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
     
   </entry>
   
