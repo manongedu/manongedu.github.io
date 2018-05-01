@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.manongedu.cn/"/>
-  <updated>2018-04-30T02:20:45.520Z</updated>
+  <updated>2018-05-01T02:51:00.642Z</updated>
   <id>http://www.manongedu.cn/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript继承之扩展Object类方式</title>
+    <link href="http://www.manongedu.cn/JavaScript%E7%BB%A7%E6%89%BF%E4%B9%8B%E6%89%A9%E5%B1%95Object%E7%B1%BB%E6%96%B9%E5%BC%8F.html"/>
+    <id>http://www.manongedu.cn/JavaScript继承之扩展Object类方式.html</id>
+    <published>2018-05-01T02:31:45.000Z</published>
+    <updated>2018-05-01T02:51:00.642Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>本文主要讲解在JavaScript中实现继承的第三种方式：<strong>扩展Object类方式。</strong></p><h1 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.函数名 = <span class="function"><span class="keyword">function</span>(<span class="params">parentObj</span>)</span>&#123;</span><span class="line">    </span><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> attr <span class="keyword">in</span> parentObj)&#123;</span><span class="line">        <span class="keyword">this</span>[attr] = parentObj[attr];</span><span class="line">    &#125;</span><span class="line">&#125;</span></pre></td></tr></table></figure><h1 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h1><p>this[attr] = parentObject[i]中的this，谁调用了这个“函数”，那么这个this就是谁。</p><h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>其实通过扩展Object类的方式去实现继承很好理解，为Object类的原型对象添加一个方法，这个方法需要接受一个父类型的实例对象，而我这个方法内部循环的去遍历这个父类型的实例对象，把父类型实例对象中的所有的属性添加到this所指向的对象中，那么就说明了this指向的这个对象也拥有了父类中所有的属性。</p><h1 id="代码实现如下："><a href="#代码实现如下：" class="headerlink" title="代码实现如下："></a>代码实现如下：</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span><span class="line">12</span><span class="line">13</span><span class="line">14</span><span class="line">15</span><span class="line">16</span><span class="line">17</span><span class="line">18</span><span class="line">19</span><span class="line">20</span><span class="line">21</span><span class="line">22</span><span class="line">23</span><span class="line">24</span><span class="line">25</span><span class="line">26</span><span class="line">27</span><span class="line">28</span><span class="line">29</span><span class="line">30</span><span class="line">31</span><span class="line">32</span><span class="line">33</span><span class="line">34</span><span class="line">35</span><span class="line">36</span><span class="line">37</span><span class="line">38</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><span class="line"><span class="undefined"></span></span><span class="line"><span class="actionscript">    <span class="comment">// 定义父类</span></span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Parent</span><span class="params">(name)</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.name = name;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="actionscript">            alert(<span class="keyword">this</span>.name);            </span></span><span class="line"><span class="undefined">        &#125;</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 定义子类</span></span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Child</span><span class="params">(password)</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.password = password;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.info = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="undefined">            </span></span><span class="line"><span class="actionscript">            alert(<span class="keyword">this</span>.name + <span class="string">" , "</span> + <span class="keyword">this</span>.password);            </span></span><span class="line"><span class="undefined">        &#125;</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 实现继承的语法</span></span></span><span class="line"><span class="javascript">    <span class="built_in">Object</span>.prototype.show = <span class="function"><span class="keyword">function</span>(<span class="params">parentObj</span>)</span>&#123;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">        <span class="keyword">for</span>(<span class="keyword">var</span> attr <span class="keyword">in</span> parentObj)&#123;</span></span><span class="line"><span class="actionscript">            <span class="keyword">this</span>[attr] = parentObj[attr];</span></span><span class="line"><span class="undefined">        &#125;</span></span><span class="line"><span class="undefined">    &#125; </span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 创建对象</span></span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> child = <span class="keyword">new</span> Child(<span class="string">"123456"</span>);</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    child.show(<span class="keyword">new</span> Parent(<span class="string">"lisi"</span>));</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    child.info(); <span class="comment">// lisi , 123456</span></span></span><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure><h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><ol><li>为什么是扩展Object类，通过对Object的原型对象添加属性的方式呢？这个是因为原型链的性质决定的，因为当我们对Object的原型对象添加属性或方法时，我们所创建的任何的实例对象都可以拥有此属性和方法。所以这里child实例对象是可以调用show方法的。</li><li>这种方式实际上就是循环遍历父类型的实例对象中的所有的属性和方法然后添加到子类的实例对象中，那么实例对象也就拥有了父对象中所有的属性和方法，就相当于是继承了下来</li></ol><h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p>如有疑问，请参考我的视频：<a href="http://baijiahao.baidu.com/builder/preview/s?id=1597096093608289523" target="_blank" rel="noopener">JavaScript继承之扩展Object类方式</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言：&quot;&gt;&lt;a href=&quot;#前言：&quot; class=&quot;headerlink&quot; title=&quot;前言：&quot;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;本文主要讲解在JavaScript中实现继承的第三种方式：&lt;strong&gt;扩展Object类方式。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://www.manongedu.cn/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
+    
+      <category term="Object" scheme="http://www.manongedu.cn/tags/Object/"/>
+    
+      <category term="继承" scheme="http://www.manongedu.cn/tags/%E7%BB%A7%E6%89%BF/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript继承之call或apply方式</title>
