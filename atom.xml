@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.manongedu.cn/"/>
-  <updated>2018-05-01T02:51:00.642Z</updated>
+  <updated>2018-05-01T11:19:33.540Z</updated>
   <id>http://www.manongedu.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript继承之prototype原型方式</title>
+    <link href="http://www.manongedu.cn/JavaScript%E7%BB%A7%E6%89%BF%E4%B9%8Bprototype%E5%8E%9F%E5%9E%8B%E6%96%B9%E5%BC%8F.html"/>
+    <id>http://www.manongedu.cn/JavaScript继承之prototype原型方式.html</id>
+    <published>2018-05-01T11:05:56.000Z</published>
+    <updated>2018-05-01T11:19:33.540Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>本篇文章主要讲解的是JavaScript继承的第四种方式：<strong>使用prototype原型方式</strong>。</p><h1 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h1><p><strong>子类.prototype = new 父类()</strong></p><h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>再来回顾一下之前讲到的一个问题：为什么说Object是所有类的父类？是因为在JS系统中，所有类在被加载完毕之后，会自动的去创建类的原型对象，那么这个原型对象又是怎么创建的呢？我们知道这个原型对象是Object类的实例对象，也就是“<strong>类名.prototype = new Object()</strong>”，那么也就是说Object类下面的所有的属性和方法都会被这个原型对象所拥有。比如说，<br>Person.prototype = new Object()，由于Object类下面的所有的属性和方法都会被Person原型对象所拥有，也就是被Person类所拥有，那么就可以说，Object是被Person所继承了。</p><p>那么现在问题来了：我任意的给你两个类A和B，我要实现A继承B，该如何做呢？</p><p>答案其实就是：<strong>A.prototype = new B();</strong></p><h1 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><span class="line">2</span><span class="line">3</span><span class="line">4</span><span class="line">5</span><span class="line">6</span><span class="line">7</span><span class="line">8</span><span class="line">9</span><span class="line">10</span><span class="line">11</span><span class="line">12</span><span class="line">13</span><span class="line">14</span><span class="line">15</span><span class="line">16</span><span class="line">17</span><span class="line">18</span><span class="line">19</span><span class="line">20</span><span class="line">21</span><span class="line">22</span><span class="line">23</span><span class="line">24</span><span class="line">25</span><span class="line">26</span><span class="line">27</span><span class="line">28</span><span class="line">29</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span> = <span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">//  定义父类</span></span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Parent</span><span class="params">(name)</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.name = name;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="actionscript">            alert(<span class="keyword">this</span>.name);            </span></span><span class="line"><span class="undefined">        &#125;</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined"></span></span><span class="line"><span class="actionscript">    <span class="comment">// 定义子类</span></span></span><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span> <span class="title">Child</span><span class="params">(password)</span></span>&#123;</span></span><span class="line"><span class="undefined">        </span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.password = password;</span></span><span class="line"><span class="actionscript">        <span class="keyword">this</span>.info = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><span class="line"><span class="actionscript">            alert(<span class="keyword">this</span>.name + <span class="string">" , "</span> + <span class="keyword">this</span>.password);            </span></span><span class="line"><span class="undefined">        &#125;</span></span><span class="line"><span class="undefined">    &#125;</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="comment">// 实现Child类去继承Parent类</span></span></span><span class="line"><span class="actionscript">    Child.prototype = <span class="keyword">new</span> Parent(<span class="string">"HelloWorld小码农"</span>);</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    <span class="keyword">var</span> child = <span class="keyword">new</span> Child(<span class="string">"123456"</span>);</span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    child.sayName(); <span class="comment">// HelloWorld小码农</span></span></span><span class="line"><span class="undefined">    </span></span><span class="line"><span class="actionscript">    child.info(); <span class="comment">// HelloWorld小码农 , 123456</span></span></span><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure><h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>之所以child可以去调用sayName方法，主要原因是我们已经将Parent的实例对象赋值给了Child的原型对象，而当我们去调用一个实例对象上不存在的属性或方法时(比如child实例对象根本没有sayName方法)，该实例对象就会自动去找该构造函数的原型对象，发现Child的原型对象上是存在sayName方法的，所以是可以调用的。</p><h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p>小伙伴们可以参考我的视频：<a href="http://baijiahao.baidu.com/builder/preview/s?id=1597180257815387737" target="_blank" rel="noopener">JavaScript继承之prototype原型方式</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言：&quot;&gt;&lt;a href=&quot;#前言：&quot; class=&quot;headerlink&quot; title=&quot;前言：&quot;&gt;&lt;/a&gt;前言：&lt;/h1&gt;&lt;p&gt;本篇文章主要讲解的是JavaScript继承的第四种方式：&lt;strong&gt;使用prototype原型方式&lt;/strong&gt;。&lt;/p&gt;
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://www.manongedu.cn/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
+    
+      <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
+    
+      <category term="继承" scheme="http://www.manongedu.cn/tags/%E7%BB%A7%E6%89%BF/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript继承之扩展Object类方式</title>
@@ -241,9 +270,9 @@
     
       <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
     
-      <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
-    
       <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
+    
+      <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
     
   </entry>
   
@@ -272,9 +301,9 @@
     
       <category term="JavaScript" scheme="http://www.manongedu.cn/tags/JavaScript/"/>
     
-      <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
-    
       <category term="prototype" scheme="http://www.manongedu.cn/tags/prototype/"/>
+    
+      <category term="原型" scheme="http://www.manongedu.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
     
   </entry>
   
